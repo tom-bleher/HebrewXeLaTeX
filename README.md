@@ -1,6 +1,6 @@
 # Lab Report Template
 
-A Hebrew-English bilingual LaTeX document for scientific laboratory reports.
+A Hebrew-English bilingual LaTeX document for scientific laboratory reports for Ubuntu Linux using XeLaTeX and Tex Live.
 
 ## Project Structure
 
