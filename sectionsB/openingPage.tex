@@ -1,0 +1,81 @@
+\newtcolorbox{tcbdoublebox}[1][]{%
+  enhanced, sharp corners, colback=white, 
+  boxrule=0.8pt, arc=5pt, 
+  borderline={1pt}{-2pt}{black}, 
+  fontupper={\setlength{\parindent}{20pt}}, 
+  width=0.35\textwidth, #1
+}
+
+% Define a new box for main content sections
+\newtcolorbox{sectionbox}[1][]{%
+  enhanced, sharp corners, colback=white, 
+  boxrule=1.2pt, arc=3pt, 
+  colframe=black,
+  fontupper={\setlength{\parindent}{0pt}}, 
+  width=\textwidth,
+  left=15pt, right=15pt, top=12pt, bottom=12pt,
+  #1
+}
+
+% Define a box for the student information
+\newtcolorbox{studentbox}[1][]{%
+  enhanced, sharp corners, colback=white, 
+  boxrule=1.2pt, arc=3pt, 
+  colframe=black,
+  fontupper={\setlength{\parindent}{0pt}}, 
+  width=\textwidth,
+  left=15pt, right=15pt, top=12pt, bottom=12pt,
+  #1
+}
+
+% Title Box (keeping the header the same)
+\noindent
+\mbox{
+  \shadowbox{
+    \begin{minipage}[c]{.45\textwidth} 
+      \centering
+      \textbf{\large בדוח מסכם בניסוי: צמד תרמי - חלק ב} \\
+    \end{minipage}
+  }
+  \hspace{100pt}
+  \begin{tcbdoublebox}
+    \begin{tabular}{p{4cm}}
+        \textbf{שם הבודק:} \underline{} \\[5pt]
+        \textbf{תאריך בדיקה:} \underline{\phantom{תאריך בדיקה}} \\[5pt]
+        \textbf{ציון:} \underline{\phantom{ציון}}
+    \end{tabular}
+  \end{tcbdoublebox}
+}
+
+\vspace{30pt}
+
+% Experiment Details Section
+\noindent
+{\Large \textbf{פרטי הניסוי}} \\[15pt]
+\begin{tabular}{@{}p{4cm}p{8cm}@{}}
+\textbf{שם מדריך:} & \underline{} \\[8pt]
+\textbf{תאריך ביצוע הניסוי:} & \underline{\makebox[4cm]{{}}} \\[8pt]
+\textbf{תאריך הגשת הדוח:} & \underline{\makebox[4cm]{{}}} \\[8pt]
+\textbf{קבוצה:} & \underline{}
+\end{tabular}
+
+\vspace{20pt}
+
+% Student Information Section
+\noindent
+{\Large \textbf{הדוח מוגש על ידי}} \\[15pt]
+\begin{tabular}{@{}p{3.5cm}p{2.5cm}p{5cm}@{}}
+\textbf{שם הסטודנט} & \textbf{מספר ת"ז} & \textbf{מסלול לימוד} \\[5pt]
+\hline \\[-3pt]
+סטודנט 1 & תז1 & פיזיקה-מדעי המחשב \\[8pt]
+סטודנט 2 & תז1 & פיזיקה-מתמטיקה \\[5pt]
+\end{tabular}
+
+\vspace{25pt}
+\noindent
+% Examiner Notes Section
+{\Large \textbf{הערות הבודק}} \\[15pt]
+\rule{\textwidth}{0.5pt} \\[8pt]
+\rule{\textwidth}{0.5pt} \\[8pt]
+\rule{\textwidth}{0.5pt} \\[8pt]
+\newpage 
