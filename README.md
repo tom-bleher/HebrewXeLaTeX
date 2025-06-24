@@ -55,23 +55,15 @@ chmod +x compile.sh
 
 ## Screenshots
 
-### Title Page
-![Title Page](screenshots/page-01.png)
+![Page 1](screenshots/page-01.png)
 
-### Table of Contents and Introduction
-![Page 2](screenshots/page-02.png)
+![Page 11](screenshots/page-11.png)
 
-### Content Pages with Hebrew Text
-![Page 3](screenshots/page-03.png)
+![Page 13](screenshots/page-13.png)
 
-### Sample Experimental Content
-![Content Page 10](screenshots/content-10.png)
+![Page 14](screenshots/page-14.png)
 
-### Data and Analysis Section
-![Content Page 11](screenshots/content-11.png)
-
-### Results and Discussion
-![Content Page 12](screenshots/content-12.png)
+![Page 15](screenshots/page-15.png)
 
 ## Requirements
 
