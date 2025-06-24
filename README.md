@@ -55,8 +55,6 @@ chmod +x compile.sh
 
 ## Screenshots
 
-![Page 1](screenshots/page-01.png)
-
 ![Page 11](screenshots/page-11.png)
 
 ![Page 13](screenshots/page-13.png)
