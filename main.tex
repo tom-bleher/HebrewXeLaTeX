@@ -1,0 +1,37 @@
+\documentclass{article}
+\input{template}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\input{sectionsA/OpeningPageA}
+\input{sectionsA/why}           % סיבת הניסוי
+\input{sectionsA/theory}        % רקע תיאורטי
+\input{sectionsA/items}         % ציוד הניסוי
+\input{sectionsA/expProcess}    % מהלך הניסוי
+\input{sectionsA/ibud_plan}     % תכנית עיבוד הנתונים
+\input{sectionsA/ibud}          % עיבוד תוצאות הניסוי
+\input{sectionsA/diun}          % דיון
+%\input{sectionsA/nispah}        % נספח
+\newpage
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\input{sectionsB/OpeningPageB}
+\input{sectionsB/why}           % סיבת הניסוי
+\input{sectionsB/theory}        % רקע תיאורטי
+\input{sectionsB/items}         % ציוד הניסוי
+\input{sectionsB/expProcess}    % מהלך הניסוי
+\input{sectionsB/ibud_plan}     % תכנית עיבוד הנתונים
+\input{sectionsB/ibud}          % עיבוד תוצאות הניסוי
+\input{sectionsB/diun}          % דיון
+\input{sectionsB/nispah}        % נספח
+
+% Add bibliography
+\newpage
+\section*{מקורות}
+\begin{LTR}
+  \printbibliography[heading=none,title={}]
+\end{LTR}
+
+\end{document}

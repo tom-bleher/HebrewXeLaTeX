@@ -1,0 +1,323 @@
+% Basic document formatting (must come before bidi)
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+% Tables and graphics (must come before bidi)
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{array}
+
+% Formatting packages (must come before bidi)
+\usepackage[a4paper,margin=1in,footskip=0.25in]{geometry}
+\usepackage{float}
+\floatstyle{plain}
+\restylefloat{table}
+\restylefloat{figure}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{adjustbox}
+\usepackage{varwidth}
+
+% TikZ and PGF (must come before bidi)
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,arrows.meta}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{angles,quotes}
+\usetikzlibrary{intersections}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{shadows}  % Add shadows library for shadowbox compatibility
+
+% Other packages that must come before bidi
+\usepackage{svg}
+\usepackage{transparent}
+\usepackage{lmodern}
+
+% Math and science packages
+\usepackage{siunitx}
+\sisetup{
+  detect-family,
+  separate-uncertainty = true,
+  table-number-alignment = center,
+  table-figures-integer = 2,
+  table-figures-decimal = 2,
+  table-figures-uncertainty = 2,
+  exponent-product = \times
+}
+
+% Hyperref (must come before polyglossia/bidi)
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+% Load mdframed before bidi
+\usepackage[framemethod=TikZ]{mdframed}
+
+% tcolorbox setup (before bidi)
+\usepackage[skins, most]{tcolorbox}
+\tcbuselibrary{listings,breakable}
+\tcbuselibrary{theorems}
+
+% Theorem tools (before bidi)
+\usepackage{thmtools}
+
+% Other utilities
+\usepackage{smartref}
+\usepackage{etexcmds}
+\usepackage{xparse}
+
+% Hebrew support (MUST BE LAST - loads bidi automatically)
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+
+% Bibliography (MUST come after polyglossia)
+\usepackage[backend=biber,style=numeric,sorting=none,backref=false]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Configure biblatex for Hebrew documents with XeLaTeX
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+\renewcommand*{\bibfont}{\small}
+
+% Fix citation command for Hebrew/RTL documents
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{[\usebibmacro{cite}]}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Ensure proper URL handling
+\setcounter{biburllcpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+
+% Configure bibliography list for Hebrew
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+% Fix brackets format for Hebrew RTL
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\renewcommand*{\mkbibbrackets}[1]{[#1]}
+
+% High-quality fonts with superior Latin/punctuation support
+\setmainfont{FreeSerif}[
+  Ligatures=TeX,
+  Scale=1.0
+]
+
+\setsansfont{DejaVu Sans}[
+  Ligatures=TeX,
+  Scale=MatchLowercase
+]
+
+\setmonofont{DejaVu Sans Mono}[
+  Scale=MatchLowercase
+]
+
+% David CLM Hebrew fonts - professional Israeli academic typography
+\newfontfamily\hebrewfont{David CLM}[
+  Script=Hebrew,
+  Scale=1.0
+]
+
+\newfontfamily\hebrewfontsf{David CLM}[
+  Script=Hebrew,
+  Scale=MatchLowercase
+]
+
+\newfontfamily\hebrewfonttt{DejaVu Sans Mono}[
+  Script=Hebrew,
+  Scale=MatchLowercase
+]
+
+% Overleaf-style font optimization
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+% Note: bidi package is automatically loaded by polyglossia
+
+% tcolorbox styles
+\tcbset {
+  base/.style={
+    arc=0mm, 
+    bottomtitle=0.5mm,
+    boxrule=0mm,
+    colbacktitle=black!10!white, 
+    coltitle=black, 
+    fonttitle=\bfseries, 
+    right=2.5mm,
+    rightrule=1mm,
+    left=3.5mm,
+    title={#1},
+    toptitle=0.75mm, 
+  }
+}
+
+\newtcolorbox{mybox}[2][]{enhanced,colback=white,colframe=green!65!black,
+enlarge top by=10mm,
+title={\textbf{#2}}, coltitle=green!65!black, colbacktitle=red!65!black, 
+overlay={ \path[fill=blue!65,line width=.4mm] (frame.north west)--++(17mm,0)coordinate(n2)--++(0,8mm)--++(-20mm,0) arc (-90:90:-4mm)--cycle;
+\node at ([shift={(5mm,4mm)}]frame.north west){\color{white}{\textbf{\sffamily EXAMPLE}}}}
+#1}
+
+% GRAPHS
+% graph xy plot, maximum of 3 functions
+\def\maxFunc{3}
+
+\NewDocumentCommand{\plotxy}{O{0} O{0} O{0}}{%
+\begin{tikzpicture}[>=latex]
+    \begin{axis}[
+      axis x line=center,
+      axis y line=center,
+      xtick={-20,-19,...,20},
+      ytick={-20,-19,...,20},
+      xlabel={$x$},
+      ylabel={$y$},
+      xlabel style={below right},
+      ylabel style={above left},
+      xmin=-5.5,
+      xmax=5.5,
+      ymin=-5.5,
+      ymax=5.5]
+      \addplot [mark=none,domain=-4:4] {#1};
+      \addplot [mark=none,domain=-4:4] {#2};
+      \addplot [mark=none,domain=-4:4] {#3};
+    \end{axis}
+    \end{tikzpicture}
+}
+
+% Theorems
+\makeatother
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{gray!70!black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			leftline=false, topline=false, bottomline=false,
+			linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+			nobreak=false
+		}
+]{thmgreenbox}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			leftline=false, topline=false, bottomline=false,
+			linecolor=ForestGreen, backgroundcolor=ForestGreen!8,
+			nobreak=false
+		}
+]{thmgreen2box}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{WildStrawberry!70!black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			leftline=false, topline=false, bottomline=false,
+			linecolor=WildStrawberry, backgroundcolor=WildStrawberry!5,
+			nobreak=false
+		}
+]{thmpinkbox}
+
+\declaretheorem[style=thmgreenbox, name=הגדרה, numberwithin=section]{definition}
+\declaretheorem[style=thmgreen2box, name=הגדרה, numbered=no]{definition*}
+\declaretheorem[style=thmpinkbox, name=תרגיל, numberwithin=section]{problem}
+\declaretheorem[style=thmpinkbox, name=תרגיל, numbered=no]{problem*}
+
+\newcommand{\parinfobox}[1]{
+\left{
+        \tcbox[colframe=green!50!white,colback=white,width=1pt]{ %adjust the width corresponding to your right margin
+            \begin{minipage}{0.35\linewidth}#1\end{minipage} %same goes for this width
+      }  
+    }
+}
+
+\newcommand{\textHebrew}[1]{\text{\texthebrew{#1}}}
+\renewcommand{\labelitemi}{$\bullet$}
+
+\tikzset{>=latex} % for LaTeX arrow head
+
+\colorlet{myblue}{blue!80!black}
+\colorlet{mydarkblue}{blue!35!black}
+\colorlet{myred}{black!50!red}
+\colorlet{glasscol}{blue!10}
+\colorlet{Ecol}{orange!90!black}
+\tikzstyle{myarr}=[-{Latex[length=3,width=2]}]
+\tikzstyle{Evec}=[Ecol,{Latex[length=2.8,width=2.5]}-{Latex[length=2.8,width=2.5]},line width=0.6]
+\tikzstyle{glass}=[top color=glasscol!88!black,bottom color=glasscol,shading angle=0]
+%\tikzstyle{glass}=[top color=glasscol!88!black,bottom color=glasscol,middle color=glasscol!98!black,shading angle=0]
+\tikzset{
+  light beam/.style={thick,red,decoration={markings,
+                     mark=at position #1 with {\arrow{latex}}},
+                     postaction={decorate}},
+  light beam/.default=0.5}
+
+\newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+  \draw[blue!40!black] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+
+% WAVEFRONT
+\def\p{0.03}
+\def\r{0.25}
+\tikzset{
+  wavefront/.pic={
+    \tikzset{/wavefront/.cd,#1}
+    \fill (0,0) circle (\p);
+    \draw (\wang:\r) arc(\wang:-\wang:\r);
+  }
+  /wavefront/.search also={/tikz},
+  /wavefront/.cd,
+  ang/.store in=\wang, ang={60},
+}
+
+\colorlet{xcol}{blue!60!black}
+\colorlet{myred}{red!85!black}
+\colorlet{myblue}{blue!80!black}
+\colorlet{mycyan}{cyan!80!black}
+\colorlet{mygreen}{green!70!black}
+\colorlet{myorange}{orange!90!black!80}
+\colorlet{mypurple}{red!50!blue!90!black!80}
+\colorlet{mydarkred}{myred!80!black}
+\colorlet{mydarkblue}{myblue!80!black}
+\tikzstyle{xline}=[xcol,thick]
+\tikzstyle{Tline}=[line width=0.6]
+\tikzstyle{width}=[{Latex[length=5,width=3]}-{Latex[length=5,width=3]},thick]
+\def\tick#1#2{\draw[thick] (#1)++(#2:0.12) --++ (#2-180:0.24)}
+\def\N{100} % number of samples
+
+\colorlet{myblue}{blue!80!black}
+\colorlet{myred}{black!50!red}
+\colorlet{watercol}{blue!70!cyan!50}
+\tikzstyle{myarr}=[-{Latex[length=3,width=2]}]
+\tikzstyle{water}=[ball color=watercol]
+\tikzset{
+  beam/.style={very thick,line cap=round,line join=round},
+}
+
+\newcommand\degree{^\circ}
