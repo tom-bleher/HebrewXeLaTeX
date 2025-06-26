@@ -1,0 +1,138 @@
+% Basic packages that must come before Hebrew support
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{dirtree}
+\usetikzlibrary{positioning}
+
+% Configure siunitx before Hebrew support
+\sisetup{
+  detect-family,
+  separate-uncertainty = true,
+  table-number-alignment = center,
+  table-figures-integer = 2,
+  table-figures-decimal = 2,
+  table-figures-uncertainty = 2,
+  exponent-product = \times
+}
+
+% Caption formatting (before Hebrew)
+\usepackage[font=footnotesize]{caption}
+
+% Hebrew support (MUST BE LAST - loads bidi automatically)
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+
+% Hebrew fonts - using the same setup as the report
+\setmainfont{FreeSerif}[
+  Ligatures=TeX,
+  Scale=1.0
+]
+
+\setsansfont{DejaVu Sans}[
+  Ligatures=TeX,
+  Scale=MatchLowercase
+]
+
+\setmonofont{DejaVu Sans Mono}[
+  Scale=MatchLowercase
+]
+
+% David CLM Hebrew fonts - professional Israeli academic typography
+\newfontfamily\hebrewfont{David CLM}[
+  Script=Hebrew,
+  Scale=1.0
+]
+
+\newfontfamily\hebrewfontsf{David CLM}[
+  Script=Hebrew,
+  Scale=MatchLowercase
+]
+
+\newfontfamily\hebrewfonttt{DejaVu Sans Mono}[
+  Script=Hebrew,
+  Scale=MatchLowercase
+]
+
+% Default font features
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+% Bibliography (MUST come after polyglossia)
+\usepackage[backend=biber,style=numeric,sorting=none,backref=false]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Configure biblatex for Hebrew documents with XeLaTeX
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+\renewcommand*{\bibfont}{\small}
+
+% Fix citation command for Hebrew/RTL documents
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{[\usebibmacro{cite}]}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Ensure proper URL handling
+\setcounter{biburllcpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+
+% Configure bibliography list for Hebrew
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+% Fix brackets format for Hebrew RTL
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\renewcommand*{\mkbibbrackets}[1]{[#1]}
+
+% JSON language definition for listings
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    breaklines=true,
+    showstringspaces=false,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    morestring=[b]", 
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morekeywords={true,false,null}
+}
+
+\lstset{language=json}
+
+% Beamer theme and settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\beamertemplatenavigationsymbolsempty
+
+% Hebrew utility commands
+\newcommand{\textHebrew}[1]{\text{\texthebrew{#1}}} 
