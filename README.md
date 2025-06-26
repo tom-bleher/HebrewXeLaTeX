@@ -55,13 +55,23 @@ chmod +x compile.sh
 
 ## Screenshots
 
-![Page 11](screenshots/page-11.png)
+### Report Screenshots
+![Page 11](report/screenshots/page-11.png)
 
-![Page 13](screenshots/page-13.png)
+![Page 13](report/screenshots/page-13.png)
 
-![Page 14](screenshots/page-14.png)
+![Page 14](report/screenshots/page-14.png)
 
-![Page 15](screenshots/page-15.png)
+![Page 15](report/screenshots/page-15.png)
+
+### Presentation Screenshots
+![Slide 1](presentation/screenshots/slide-01.png)
+
+![Slide 2](presentation/screenshots/slide-02.png)
+
+![Slide 4](presentation/screenshots/slide-04.png)
+
+![Slide 5](presentation/screenshots/slide-05.png)
 
 ## Requirements
 
